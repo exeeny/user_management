@@ -1,0 +1,13 @@
+id,name,email,email_verified_at,role,position,department,created_at,updated_at
+12,harry,harry@mail.com,,user,,,2025-03-25T08:08:19.000000Z,2025-03-25T08:08:19.000000Z
+11,xeni,mirovagena1313@gmail.com,,admin,,,2025-03-23T08:48:22.000000Z,2025-03-23T08:48:22.000000Z
+7,"Mrs. Summer Kub PhD",zbartell@example.com,2025-03-23T08:45:47.000000Z,user,,,2025-03-23T08:45:49.000000Z,2025-03-23T08:45:49.000000Z
+8,"Dr. Vicente Ullrich DDS",qflatley@example.com,2025-03-23T08:45:47.000000Z,user,,,2025-03-23T08:45:49.000000Z,2025-03-23T08:45:49.000000Z
+9,"Mikayla Armstrong",sanford.darrin@example.net,2025-03-23T08:45:47.000000Z,user,Developer,,2025-03-23T08:45:49.000000Z,2025-03-25T08:26:44.000000Z
+10,"Mckenzie Will",jeffertz@example.org,2025-03-23T08:45:47.000000Z,user,,IT,2025-03-23T08:45:49.000000Z,2025-03-23T09:30:23.000000Z
+1,"Cordelia Hackett IV",walsh.dusty@example.org,2025-03-23T08:45:46.000000Z,user,Manager,HR,2025-03-23T08:45:48.000000Z,2025-03-23T09:44:18.000000Z
+2,"Micaela Brekke",zjacobson@example.org,2025-03-23T08:45:47.000000Z,user,,,2025-03-23T08:45:48.000000Z,2025-03-23T08:45:48.000000Z
+3,"Jerel Sipes",hettinger.eliseo@example.com,2025-03-23T08:45:47.000000Z,user,,,2025-03-23T08:45:48.000000Z,2025-03-23T08:45:48.000000Z
+4,"Raphaelle Hartmann",marcia.kassulke@example.org,2025-03-23T08:45:47.000000Z,user,,,2025-03-23T08:45:48.000000Z,2025-03-23T08:45:48.000000Z
+5,"Cleta Hermiston",mcglynn.dessie@example.net,2025-03-23T08:45:47.000000Z,user,,,2025-03-23T08:45:48.000000Z,2025-03-23T08:45:48.000000Z
+6,"Prof. Marcus Renner",delilah.adams@example.net,2025-03-23T08:45:47.000000Z,user,,IT,2025-03-23T08:45:48.000000Z,2025-03-23T09:36:48.000000Z
