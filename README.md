@@ -10,6 +10,8 @@ Role-based access control:
   - Admins can view, edit, delete, and assign roles to users.
 Management of additional user details such as department and position.
 Middleware-based security for admin-specific actions.
+Filtered search by name/email, department and position
+Download csv file(regular and if search was filtered)
 Error handling for restricted actions and invalid inputs.
 
 Tech Stack:
