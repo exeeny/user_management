@@ -44,4 +44,9 @@ export interface User {
     [key: string]: unknown; // This allows for additional properties...
 }
 
+export interface PaginationLink {
+    url: string | null;
+    label: string;
+    active: boolean;
+  }
 
