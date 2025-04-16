@@ -91,13 +91,24 @@ export default function Users({ users, filters }: Props) {
     }
 
     const deleteUser = async (id: number) => {
-        if(confirm("Are you sure you want to delete this user?")){
-            router.delete(route('users.destroy', id)), {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, delete user!"
+          }).then((result) => {
+            if (result.isConfirmed) {
+              router.delete(route('users.destroy', id)), {
                 replace: true,
                 preserveScroll: true,
                 preserveState: true,
             }
-        }
+            }
+          });
+
         
     }
 
@@ -169,10 +180,13 @@ export default function Users({ users, filters }: Props) {
                                 <td className="px-6 py-4">{user.position ?? 'Unknown'}</td>
                                 <td className="px-6 py-4">{user.department ?? 'Unknown'}</td>
                                 <td className="px-6 py-4">
-                                    <Link href={route('user.edit', user.id)} className="text-blue-600 hover:underline">Edit</Link>
+                                <Button variant='outline' asChild>
+                                    <Link href={route('user.edit', user.id)} >Edit</Link>
+                                    </Button>
+
                                 </td>
                                 <td className="px-6 py-4">
-                  <button onClick={() => deleteUser(user.id)} className="text-red-600 hover:underline">Delete</button>
+                  <Button onClick={() => deleteUser(user.id)} >Delete</Button>
                 </td>
                             </tr>
                         ))}
