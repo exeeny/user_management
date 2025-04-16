@@ -16,9 +16,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 });
 
 Route::middleware(admin::class)->group(function () {
-    Route::get('/users', [UserController::class, 'index']);
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/getUsers', [UserController::class, 'getUsers'])->name('users');
-    Route::delete('/deleteUser/{user}', [UserController::class, 'deleteUser']);
+    Route::delete('/deleteUser/{user}', [UserController::class, 'deleteUser'])->name('users.destroy');
     Route::get('/edit/{user}', [UserController::class, 'edit'])->name('user.edit');
     Route::patch('/update/{user}', [UserController::class, 'update'])->name('user.update');
     Route::post('/convertToCsv', [UserController::class, 'exportToCsv']);

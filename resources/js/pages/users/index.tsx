@@ -1,11 +1,12 @@
 import { PlaceholderPattern } from '@/components/ui/placeholder-pattern';
 import AppLayout from '@/layouts/app-layout';
 import { type BreadcrumbItem, type User, type PaginationLink } from '@/types';
-import { Button } from '@headlessui/react';
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import axios from 'axios';
-import { ReactEventHandler, useEffect, useState } from 'react';
+import { ReactEventHandler, use, useEffect, useState } from 'react';
 import { router } from '@inertiajs/react';
+import { Button } from '@/components/ui/button';
+import Swal from 'sweetalert2'
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -33,6 +34,7 @@ export default function Users({ users, filters }: Props) {
     const [department, setDepartment] = useState(filters.department || '');
     const [position, setPosition] = useState(filters.position || '');
     const [page, setPage] = useState(1);
+    const {flash} = usePage().props as any;
 
     const fetchFiltered = () => {
         router.get('/users', {
@@ -55,14 +57,26 @@ export default function Users({ users, filters }: Props) {
         return () => clearTimeout(delayDebounce);
     }, [search, department, position, page]);
 
-    const convertToCsv = async() => {
+    useEffect(()=>{
+        if(flash?.success){
+            Swal.fire({
+                title: "Success!",
+                text: flash.success,
+                icon: "success"
+              });
+              
+        }
+
+    }, [flash])
+
+    const convertToCsv = async () => {
         try {
             const response = await axios.post('/convertToCsv', {
                 search,
                 department,
                 position
-            }, { responseType: 'blob' }); 
-    
+            }, { responseType: 'blob' });
+
             const url = window.URL.createObjectURL(new Blob([response.data]));
             const link = document.createElement('a');
             link.href = url;
@@ -73,8 +87,21 @@ export default function Users({ users, filters }: Props) {
         } catch (error) {
             console.log(error);
         }
+
+    }
+
+    const deleteUser = async (id: number) => {
+        if(confirm("Are you sure you want to delete this user?")){
+            router.delete(route('users.destroy', id)), {
+                replace: true,
+                preserveScroll: true,
+                preserveState: true,
+            }
+        }
         
     }
+
+
 
 
 
@@ -85,7 +112,7 @@ export default function Users({ users, filters }: Props) {
             <Head title="Users" />
 
 
-            <div className="mb-4 flex gap-2">
+            <div className="max-w-lg flex justify-between gap-2 m-2">
                 <input
                     className="border px-2 py-1 rounded w-full"
                     type="text"
@@ -144,9 +171,9 @@ export default function Users({ users, filters }: Props) {
                                 <td className="px-6 py-4">
                                     <Link href={route('user.edit', user.id)} className="text-blue-600 hover:underline">Edit</Link>
                                 </td>
-                                {/* <td className="px-6 py-4">
+                                <td className="px-6 py-4">
                   <button onClick={() => deleteUser(user.id)} className="text-red-600 hover:underline">Delete</button>
-                </td> */}
+                </td>
                             </tr>
                         ))}
                     </tbody>
@@ -177,13 +204,13 @@ export default function Users({ users, filters }: Props) {
                 )}
             </div>
 
-            <button 
-    onClick={convertToCsv}
-    className="text-white bg-green-600 hover:bg-green-700 px-4 py-2 rounded">
-    Export CSV
-</button>
+            <div className='flex justify-end'>
 
-
+                <Button
+                onClick={convertToCsv}>
+                Export CSV
+            </Button>
+            </div>
 
         </AppLayout>
     );

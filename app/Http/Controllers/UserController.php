@@ -31,7 +31,7 @@ class UserController extends Controller
             $query->where('position', $position);
         }
 
-        $users = $query->orderBy('id', 'desc')->paginate(5)->withQueryString();
+        $users = $query->where('id', '!=', Auth::id())->orderBy('id', 'desc')->paginate(15)->withQueryString();
 
         return Inertia::render('users/index', [
             'users' => $users,
@@ -68,7 +68,7 @@ class UserController extends Controller
     public function deleteUser(User $user)
     {
         $user->delete();
-        return response()->json(['message' => 'User deleted']);
+        return to_route('users.index')->with('success', 'User was deleted successfully');
     }
 
     public function exportToCsv(Request $request)
