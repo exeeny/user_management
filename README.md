@@ -4,16 +4,16 @@ This project is role-based user management system designed to provide administra
 while maintaining restrictions for standard users.
 
 Features:
-User registration and login system using starter pack for auth.
-Role-based access control:
+- User registration and login system using starter pack for auth.
+- Role-based access control:
   - Standard users can create accounts and update personal information.
   - Admins can view, edit, delete, and assign roles to users.
-Management of additional user details such as department and position.
-Middleware-based security for admin-specific actions.
-Filtered search by name/email, department and position
-Download csv file(regular and if search was filtered)
-Error handling for restricted actions and invalid inputs.
-Error + success messages.
+- Management of additional user details such as department and position.
+- Middleware-based security for admin-specific actions.
+- Filtered search by name/email, department and position
+- Download csv file(regular and if search was filtered)
+- Error handling for restricted actions and invalid inputs.
+- Error + success messages.
 
 Tech Stack:
 Frontend: React(TypeScript), Tailwind.
