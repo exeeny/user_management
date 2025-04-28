@@ -61,7 +61,8 @@ class UserController extends Controller
     ]);
 
     $user->update($validated);
-    return Inertia::render('users/index');
+
+    return to_route('users.index')->with('success', 'User info was updated successfully!');
    }
 
 
@@ -76,11 +77,9 @@ class UserController extends Controller
         $search = $request->input('search');
         $department = $request->input('department');
         $position = $request->input('position');
-    
-        // Query the users based on the filters
+        
         $usersQuery = User::query();
     
-        // Apply the search filter if present
         if ($search) {
             $usersQuery->where(function($query) use ($search) {
                 $query->where('name', 'like', "%{$search}%")
@@ -88,45 +87,35 @@ class UserController extends Controller
             });
         }
     
-        // Apply the department filter if present
         if ($department) {
             $usersQuery->where('department', $department);
         }
     
-        // Apply the position filter if present
         if ($position) {
             $usersQuery->where('position', $position);
         }
-    
-        // Get the filtered users
+
         $users = $usersQuery->get();
 
         if ($users->isEmpty()) {
             return response()->json(['error' => 'No users found based on the filters.'], 404);
         }
-    
-        // Define the CSV file name and path
+
         $csvFileName = 'filtered_users.csv';
         $csvFilePath = storage_path('app/' . $csvFileName);
-    
-        // Open the CSV file for writing
+
         $csvFile = fopen($csvFilePath, 'w');
     
-        // Get the headers (keys of the first user)
-        $headers = array_keys($users->first()->toArray()); // Convert to array to get keys
+        $headers = array_keys($users->first()->toArray()); 
     
-        // Write the header row to the CSV file
         fputcsv($csvFile, $headers);
-    
-        // Write each user's data to the CSV file
+
         foreach ($users as $user) {
-            fputcsv($csvFile, $user->toArray()); // Convert each user to array
+            fputcsv($csvFile, $user->toArray());
         }
-    
-        // Close the file after writing
+
         fclose($csvFile);
-    
-        // Return the CSV file as a downloadable response
+
         return response()->download($csvFilePath)->deleteFileAfterSend(true);
     }
 }

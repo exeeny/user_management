@@ -56,22 +56,40 @@ export default function Welcome() {
                         This is your user management system. From here, you can manage users, check activity, and more.
                     </p>
 
-                    {auth.user && (
+                    {auth.user ?  <>
                         <div className="text-sm text-[#555] dark:text-neutral-400">
                             You are logged in as: <span className="font-medium">{auth.user.role}</span>
                         </div>
-                    )}
 
-                    <div className="flex flex-wrap justify-center gap-4 pt-4">
+                        <div className="flex flex-wrap justify-center gap-4 pt-4">
                         <Button asChild >
                             <a href="/dashboard">Go to Dashboard</a>
                         </Button>
                         {auth.user?.role === 'admin' && (
-                            <Button variant='outline' asChild>
+                            <Button variant='outline'>
                                 <a href="/users">Manage Users</a>
                             </Button>
                         )}
                     </div>
+</> : <>You are not currently logged in! <div className='flex gap-2 justify-center m-2'>
+                                <Link
+                                    href={route('login')}
+                                    className="inline-block rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
+                                >
+                                    Log in
+                                </Link>
+                                <Link
+                                    href={route('register')}
+                                    className="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
+                                >
+                                    Register
+                                </Link>
+                            </div>
+                            </>
+
+                    }
+
+                    
                 </div>
             </main>
                 

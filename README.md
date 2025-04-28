@@ -4,7 +4,7 @@ This project is role-based user management system designed to provide administra
 while maintaining restrictions for standard users.
 
 Features:
-User registration and login system.
+User registration and login system using starter pack for auth.
 Role-based access control:
   - Standard users can create accounts and update personal information.
   - Admins can view, edit, delete, and assign roles to users.
@@ -13,10 +13,11 @@ Middleware-based security for admin-specific actions.
 Filtered search by name/email, department and position
 Download csv file(regular and if search was filtered)
 Error handling for restricted actions and invalid inputs.
+Error + success messages.
 
 Tech Stack:
-Frontend: React (TypeScript), Tailwind.
-Backend: Laravel framework.
+Frontend: React(TypeScript), Tailwind.
+Backend: Laravel framework + Inertia.js.
 
 How to install:
 
@@ -26,6 +27,17 @@ How to install:
 - composer install
 - php artisan key:generate
 - php artisan migrate (click yes to make db file)
+
+important! 
+by default user is registered with a role of standart user, so you need to seed admin first to experience it's features. in user seeder i provided usefull info(u can also edit it for personal use) after that
+- php artisan db:seed --class=UserSeeder
+
+now u have admin!
+
+also!
+
+i edit main user factory so u can seed db with fake users unfo (with department and position)
+- php artisan db:seed
 
 next:
 
