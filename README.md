@@ -20,13 +20,14 @@ Frontend: React(TypeScript), Tailwind.
 Backend: Laravel framework + Inertia.js.
 
 How to install:
-
-- git clone https://github.com/exeeny/user_management.git
-- cd repository-name
-- cp .env.example .env
-- composer install
-- php artisan key:generate
-- php artisan migrate (click yes to make db file)
+```
+ git clone https://github.com/exeeny/user_management.git
+ cd repository-name
+ cp .env.example .env
+ composer install
+ php artisan key:generate
+ php artisan migrate (click yes to make db file)
+```
 
 important! 
 by default user is registered with a role of standart user, so you need to seed admin first to experience it's features. in user seeder i provided usefull info(u can also edit it for personal use) after that
