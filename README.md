@@ -15,6 +15,8 @@ while maintaining restrictions for standard users.
 - Error handling for restricted actions and invalid inputs.
 - Error + success messages.
 
+(I also plan to add statistics and other features to the dashboard. rn they are in progress)
+
 ## Tech Stack:
 Frontend: React(TypeScript), Tailwind.
 Backend: Laravel framework + Inertia.js.
