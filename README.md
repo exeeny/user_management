@@ -31,18 +31,23 @@ How to install:
 
 important! 
 by default user is registered with a role of standart user, so you need to seed admin first to experience it's features. in user seeder i provided usefull info(u can also edit it for personal use) after that
-- php artisan db:seed --class=UserSeeder
+```
+ php artisan db:seed --class=UserSeeder
+```
 
 now u have admin!
 
 also!
 
 i edit main user factory so u can seed db with fake users unfo (with department and position)
-- php artisan db:seed
+```
+ php artisan db:seed
+```
 
 next:
-
-- npm install
-- npm run build
+```
+npm install
+npm run build
+```
 
 done
